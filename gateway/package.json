@@ -1,0 +1,52 @@
+{
+  "name": "gateway",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon",
+    "start": "NODE_ENV=production node dist/index.js",
+    "build": "tsc",
+    "eslint": "eslint .",
+    "tsc-test": "tsc --project . --noEmit",
+    "clean": "rm -rf dist",
+    "lint": "pnpm tsc-test && pnpm eslint"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cls-hooked": "^4.2.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "uuid": "^9.0.1",
+    "winston": "^3.13.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.3.0",
+    "@types/cls-hooked": "^4.3.8",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.12",
+    "@types/uuid": "^9.0.8",
+    "@typescript-eslint/parser": "^7.11.0",
+    "eslint": "^9.3.0",
+    "globals": "^15.3.0",
+    "nodemon": "^3.1.1",
+    "prettier": "^3.2.5",
+    "prettier-eslint": "^16.3.0",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.11.0"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src/**/*.ts"
+    ],
+    "ignore": [
+      "src/**/*.spec.ts"
+    ],
+    "ext": "ts js json",
+    "exec": "tsc --project . --noEmit && ts-node --files src/index.ts"
+  }
+}
