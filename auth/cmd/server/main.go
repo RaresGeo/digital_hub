@@ -8,14 +8,22 @@ import (
 	"log"
 	"os"
 
+	_ "auth/docs"
+
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/joho/godotenv"
 )
 
+// @title Authentication REST API
+// @version 1.0
+// @description This auth API only functions with OAuth2 and it shares the same database with [...]
+// @host localhost:8080
+
 func main() {
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Error loading .env file")
+		log.Fatalf("Error loading .env file: %v", err)
+		panic(err)
 	}
 
 	// set up the database connection
@@ -38,5 +46,5 @@ func main() {
 	if port == "" {
 		port = "8080" // Default port if not specified
 	}
-	r.Run(":" + port)
+	r.Run("0.0.0.0:" + port)
 }

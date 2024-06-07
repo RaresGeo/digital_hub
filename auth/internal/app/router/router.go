@@ -35,5 +35,5 @@ func NewRouter(
 func registerAPIRoutes(router *gin.Engine, service *usecase.UserAuthUseCase) {
 	// Example endpoint
 	router.GET("/", healthcheck.Handler())
-	router.GET("/authenticate", authenticate.Handler(service))
+	router.GET("/authenticate/:token", authenticate.Handler(service))
 }

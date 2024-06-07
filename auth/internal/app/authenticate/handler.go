@@ -15,7 +15,15 @@ type response struct {
 	User model.User `json:"user"`
 }
 
-// AuthHandler returns a handler for OAuth2 authentication.
+// @Summary		User authentication
+// @Description	This handles both user creation and user authentication using OAuth2, via the google provider,
+// @Tags			authenticate
+// @Produce		json
+// @Param token query string true "Google OAuth2 token"
+// @Success		200	{object}	response
+// @Failure		400	{object}	app.BaseErrorResponse
+// @Failure		500	{object}	app.BaseErrorResponse
+// @Router			/authenticate/{token} [get]
 func Handler(service *usecase.UserAuthUseCase) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		token := c.Query("token")

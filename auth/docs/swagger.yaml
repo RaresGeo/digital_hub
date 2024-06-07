@@ -1,0 +1,63 @@
+definitions:
+  app.BaseErrorResponse:
+    properties:
+      error:
+        type: string
+      ok:
+        type: boolean
+    type: object
+  authenticate.response:
+    properties:
+      ok:
+        type: boolean
+      user:
+        $ref: '#/definitions/model.User'
+    type: object
+  model.User:
+    properties:
+      email:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      profilePictureUrl:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This auth API only functions with OAuth2 and it shares the same database
+    with [...]
+  title: Authentication REST API
+  version: "1.0"
+paths:
+  /authenticate/{token}:
+    get:
+      description: This handles both user creation and user authentication using OAuth2,
+        via the google provider,
+      parameters:
+      - description: Google OAuth2 token
+        in: query
+        name: token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/authenticate.response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/app.BaseErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.BaseErrorResponse'
+      summary: User authentication
+      tags:
+      - authenticate
+swagger: "2.0"
