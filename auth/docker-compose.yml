@@ -4,21 +4,22 @@ services:
   api:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/Dockerfile
     ports:
       - "${PORT}:8081"
 
   development:
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: docker/Dockerfile.dev
     ports:
       - "${PORT}:8081"
     volumes:
-      - .:/app
-  
-  # swagger:
-  #   image: ghcr.io/swaggo/swag:latest
-  #   volumes:
-  #     - .:/code
-  #   command: "init"
+      - ./:/app
+
+  swagger:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.swagger
+    volumes:
+      - ./:/app

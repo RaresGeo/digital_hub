@@ -25,15 +25,6 @@ const docTemplate = `{
                     "authenticate"
                 ],
                 "summary": "User authentication",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Google OAuth2 token",
-                        "name": "token",
-                        "in": "query",
-                        "required": true
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -60,6 +51,9 @@ const docTemplate = `{
     "definitions": {
         "app.BaseErrorResponse": {
             "type": "object",
+            "required": [
+                "error"
+            ],
             "properties": {
                 "error": {
                     "type": "string"
@@ -71,6 +65,9 @@ const docTemplate = `{
         },
         "authenticate.response": {
             "type": "object",
+            "required": [
+                "user"
+            ],
             "properties": {
                 "ok": {
                     "type": "boolean"
@@ -82,6 +79,11 @@ const docTemplate = `{
         },
         "model.User": {
             "type": "object",
+            "required": [
+                "email",
+                "id",
+                "name"
+            ],
             "properties": {
                 "email": {
                     "type": "string"

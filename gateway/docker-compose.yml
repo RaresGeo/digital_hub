@@ -1,0 +1,10 @@
+services:
+  development:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.dev
+    ports:
+      - "${PORT}:8080"
+    volumes:
+      - ./:/app
+    command: pnpm dev

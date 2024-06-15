@@ -9,7 +9,7 @@ import config from "./config";
 import { errorHandler } from "./middlewares/errorHandler";
 import { requestIdAdder } from "./middlewares/reqIdAdder";
 import { reqIdAdderInResponse } from "./middlewares/reqIdAdderInResponse";
-import setRoutes from "./routes";
+import Router from "./router";
 import { logger } from "./util/logger";
 
 export class App {
@@ -23,13 +23,18 @@ export class App {
       urlencoded({
         limit: "5mb",
         extended: true,
-      }),
+      })
     );
     this.app.use(requestIdAdder);
     this.app.use(cors(config.cors));
+  }
 
-    setRoutes(this.app);
+  public async initRouter(): Promise<void> {
+    const router = await Router.create(this.app);
+    router.setRoutes();
+  }
 
+  public setRouteMiddleware(): void {
     this.app.use(errorHandler);
     this.app.use(reqIdAdderInResponse);
   }

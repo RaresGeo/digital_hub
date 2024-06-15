@@ -1,0 +1,21 @@
+#!/bin/sh
+
+echo "Generating Swagger docs for auth API..."
+
+rc=0
+
+EXEC_SWAGGER='docker compose run --rm swagger'
+script -q --return -c "${EXEC_SWAGGER}" /dev/null
+swagger=$?
+
+if [ $swagger != 0 ]; then
+    echo "Swagger generation failed."
+    rc=1
+fi
+
+[ $rc -ne 0 ] && exit 1
+
+echo
+echo "Adding Auth Swagger docs to git commit"
+
+git add auth/docs/

@@ -1,0 +1,14 @@
+# Ignore log files
+*.log
+
+# Ignore build artifacts
+build
+
+# Ignore editor-specific files
+.vscode
+.idea
+
+# Ignore Docker-related files
+.dockerignore
+docker/
+docker-compose.yml

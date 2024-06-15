@@ -17,10 +17,10 @@ func NewEmailAddress(email string) (EmailAddress, error) {
 }
 
 type User struct {
-	ID                UserId
-	Email             EmailAddress
-	Name              string
-	ProfilePictureUrl string
+	ID                UserId       `json:"id" binding:"required"`
+	Email             EmailAddress `json:"email" binding:"required"`
+	Name              string       `json:"name" binding:"required"`
+	ProfilePictureUrl string       `json:"profilePictureUrl"`
 }
 
 // NewUser creates a new user entity.

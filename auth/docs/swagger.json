@@ -18,15 +18,6 @@
                     "authenticate"
                 ],
                 "summary": "User authentication",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Google OAuth2 token",
-                        "name": "token",
-                        "in": "query",
-                        "required": true
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -53,6 +44,9 @@
     "definitions": {
         "app.BaseErrorResponse": {
             "type": "object",
+            "required": [
+                "error"
+            ],
             "properties": {
                 "error": {
                     "type": "string"
@@ -64,6 +58,9 @@
         },
         "authenticate.response": {
             "type": "object",
+            "required": [
+                "user"
+            ],
             "properties": {
                 "ok": {
                     "type": "boolean"
@@ -75,6 +72,11 @@
         },
         "model.User": {
             "type": "object",
+            "required": [
+                "email",
+                "id",
+                "name"
+            ],
             "properties": {
                 "email": {
                     "type": "string"

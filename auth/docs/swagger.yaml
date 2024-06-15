@@ -5,6 +5,8 @@ definitions:
         type: string
       ok:
         type: boolean
+    required:
+    - error
     type: object
   authenticate.response:
     properties:
@@ -12,6 +14,8 @@ definitions:
         type: boolean
       user:
         $ref: '#/definitions/model.User'
+    required:
+    - user
     type: object
   model.User:
     properties:
@@ -23,6 +27,10 @@ definitions:
         type: string
       profilePictureUrl:
         type: string
+    required:
+    - email
+    - id
+    - name
     type: object
 host: localhost:8080
 info:
@@ -36,12 +44,6 @@ paths:
     get:
       description: This handles both user creation and user authentication using OAuth2,
         via the google provider,
-      parameters:
-      - description: Google OAuth2 token
-        in: query
-        name: token
-        required: true
-        type: string
       produces:
       - application/json
       responses:

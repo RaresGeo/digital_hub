@@ -12,7 +12,7 @@ type BaseResponse struct {
 
 type BaseErrorResponse struct {
 	BaseResponse
-	Error string `json:"error"`
+	Error string `json:"error" binding:"required"`
 }
 
 func RespondError(c *gin.Context, status int, err error) {
