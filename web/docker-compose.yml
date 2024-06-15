@@ -1,0 +1,10 @@
+services:
+  development:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.dev
+    ports:
+      - "${PORT}:3000"
+    volumes:
+      - ./:/app
+    command: [ "yarn", "dev" ]

@@ -1,5 +1,4 @@
 "use server";
-import { getAbout } from "../../server_actions/landing-page";
 import { getColor } from "../../utils/styling";
 
 export default async function About(): Promise<JSX.Element> {
@@ -7,7 +6,11 @@ export default async function About(): Promise<JSX.Element> {
     text,
     background_color: backgroundColor,
     text_color: textColor,
-  } = await getAbout();
+  } = {
+    text: "We are a team of passionate developers who love building cool stuff.",
+    background_color: "black",
+    text_color: "white",
+  };
 
   console.log("About", text, backgroundColor, textColor);
 

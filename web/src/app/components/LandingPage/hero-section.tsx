@@ -1,7 +1,6 @@
 "use server";
 
 import Link from "next/link";
-import { getHomepage } from "../../server_actions/landing-page";
 import { getColor } from "../../utils/styling";
 
 export default async function HeroSection(): Promise<JSX.Element> {
@@ -14,7 +13,16 @@ export default async function HeroSection(): Promise<JSX.Element> {
     button_text_color: buttonTextColor,
     button_background: buttonBackground,
     button_href: buttonHref,
-  } = await getHomepage();
+  } = {
+    header: "Welcome to our website",
+    subheader: "We are excited to have you here!",
+    background_color: "white",
+    text_color: "black",
+    button_text: "Get started",
+    button_text_color: "white",
+    button_background: "blue",
+    button_href: "/signup",
+  };
 
   return (
     <div
