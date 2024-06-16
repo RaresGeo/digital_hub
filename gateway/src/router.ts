@@ -4,6 +4,8 @@ import { Api as AuthApi } from "./adapter/auth/AuthApi";
 import authenticateHandlerFactory from "./presenter/authenticate";
 import healthcheckHandlerFactory from "./presenter/healthCheck";
 
+const IS_DEVELOPMENT = process.env.NODE_ENV === "development";
+
 interface Route {
   method: "get" | "post" | "put" | "delete";
   path: string;
@@ -31,7 +33,7 @@ class Router {
 
     const authApi = new AuthApi<SecurityDataType>({
       securityWorker: tokenSecurityWorker,
-      secure: true,
+      secure: !IS_DEVELOPMENT,
       format: "json",
       baseURL: process.env.AUTH_API_URL!,
     });

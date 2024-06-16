@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { BaseResponse } from "../types";
 
 const axiosClient = axios.create({
-  baseURL: process.env.API_BASE_URL,
+  baseURL: process.env.NEXT_PUBLIC_BFF_URL,
   headers: {
     Authorization: `Bearer ${process.env.API_TOKEN}`,
   },
